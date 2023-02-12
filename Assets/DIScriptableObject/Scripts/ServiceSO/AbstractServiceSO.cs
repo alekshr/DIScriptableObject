@@ -9,17 +9,8 @@ namespace DIScriptableObject
 
         public T Service => _service;
 
-        public void Construct(IGetServiceSO<T> getServiceService)
-        {
-            if (_service == null)
-            {
-                _service = getServiceService.GetServiceProvider();
-            }
-            else
-            {
-               Debug.LogError("Service is inited. Check SO where init service"); 
-            }
-        }
+        public virtual void Construct(IGetServiceSO<T> getServiceService) =>
+            _service = getServiceService.GetServiceProvider();
         
         public abstract T Get();
     }

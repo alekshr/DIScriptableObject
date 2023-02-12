@@ -1,5 +1,6 @@
 using DIScriptableObject.ConstructorSO;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace DIScriptableObject.Provider
 {
@@ -10,10 +11,10 @@ namespace DIScriptableObject.Provider
         protected T _component = default;
         
         [SerializeField] 
-        protected AbstractServiceSO<T> _serviceComponent = default;
+        protected AbstractServiceSO<T> _serviceSo = default;
 
-        protected void Awake() =>
-            _serviceComponent.Construct(this);
+        protected virtual void Awake() =>
+            _serviceSo.Construct(this);
 
         public T GetServiceProvider() =>
             _component;
